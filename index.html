@@ -1,0 +1,138 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b1020">
+  <title>DevTrack | Productivity Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#"><span class="brand-mark">D</span> DevTrack</a>
+
+      <p class="nav-label">WORKSPACE</p>
+      <button class="nav-item active" data-view="all">▦ <span>Overview</span></button>
+      <button class="nav-item" data-view="today">◷ <span>Today's Tasks</span></button>
+      <button class="nav-item" data-view="upcoming">▣ <span>Upcoming</span></button>
+      <button class="nav-item" data-view="completed">✓ <span>Completed</span></button>
+
+      <div class="sidebar-bottom">
+        <div class="avatar">DK</div>
+        <div><strong>Developer</strong><small>Personal workspace</small></div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <button id="menu" class="icon-btn" aria-label="Toggle navigation">☰</button>
+        <div class="breadcrumb">Workspace <span>/</span> <strong id="page-title">Overview</strong></div>
+        <div class="top-right"><span class="live-dot"></span> All changes saved</div>
+      </header>
+
+      <section class="content">
+        <div class="page-heading">
+          <div>
+            <p class="eyebrow">YOUR PERSONAL WORKSPACE</p>
+            <h1 id="greeting">Good work starts here.</h1>
+            <p class="muted">Plan your day. Track your progress. Get things done.</p>
+          </div>
+          <button id="open-modal" class="primary-btn">＋ New task</button>
+        </div>
+
+        <section class="stats">
+          <article class="stat-card">
+            <span class="stat-icon purple">▦</span>
+            <p>Total tasks</p>
+            <strong id="total-stat">0</strong>
+            <small>Tasks in your workspace</small>
+          </article>
+          <article class="stat-card">
+            <span class="stat-icon blue">◷</span>
+            <p>In progress</p>
+            <strong id="active-stat">0</strong>
+            <small>Tasks to work on</small>
+          </article>
+          <article class="stat-card">
+            <span class="stat-icon green">✓</span>
+            <p>Completed</p>
+            <strong id="done-stat">0</strong>
+            <small>Tasks finished</small>
+          </article>
+          <article class="stat-card">
+            <span class="stat-icon orange">⚑</span>
+            <p>Overdue</p>
+            <strong id="overdue-stat">0</strong>
+            <small>Past-due unfinished tasks</small>
+          </article>
+        </section>
+
+        <section class="dashboard-grid">
+          <article class="panel task-panel">
+            <div class="panel-heading">
+              <div><h2 id="task-heading">Your tasks</h2><p class="muted">Manage your work and priorities.</p></div>
+              <span class="count-pill" id="task-count">0 tasks</span>
+            </div>
+
+            <div class="toolbar">
+              <input id="search" type="search" placeholder="⌕  Search tasks..." aria-label="Search tasks">
+              <select id="priority-filter" aria-label="Filter by priority">
+                <option value="all">All priorities</option>
+                <option value="High">High priority</option>
+                <option value="Medium">Medium priority</option>
+                <option value="Low">Low priority</option>
+              </select>
+            </div>
+
+            <div class="task-list" id="task-list"></div>
+            <p id="empty-state" class="empty-state" hidden>No tasks found. Add a task to get started.</p>
+          </article>
+
+          <div class="right-column">
+            <article class="panel progress-panel">
+              <div class="panel-heading"><div><h2>Productivity</h2><p class="muted">Your completion rate</p></div></div>
+              <div class="progress-ring" id="progress-ring">
+                <div><strong id="progress-number">0%</strong><small>completed</small></div>
+              </div>
+              <div class="progress-legend">
+                <span><i class="legend-dot done-dot"></i> Completed <strong id="legend-done">0</strong></span>
+                <span><i class="legend-dot todo-dot"></i> Remaining <strong id="legend-remaining">0</strong></span>
+              </div>
+            </article>
+
+            <article class="panel priority-panel">
+              <div class="panel-heading"><div><h2>Priority breakdown</h2><p class="muted">Tasks by urgency</p></div></div>
+              <div id="priority-breakdown"></div>
+            </article>
+          </div>
+        </section>
+
+        <p class="footer-note">DevTrack · A simple workspace for better focus.</p>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="modal" hidden>
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div class="modal-heading"><h2 id="modal-title">Create a task</h2><button id="close-modal" class="icon-btn" aria-label="Close">✕</button></div>
+      <form id="task-form">
+        <label for="task-title">Task name</label>
+        <input id="task-title" maxlength="120" placeholder="e.g. Practise C++ arrays" required>
+        <label for="task-description">Description (optional)</label>
+        <textarea id="task-description" rows="3" maxlength="500" placeholder="What needs to be done?"></textarea>
+        <div class="form-row">
+          <div><label for="task-priority">Priority</label>
+            <select id="task-priority"><option>Medium</option><option>High</option><option>Low</option></select>
+          </div>
+          <div><label for="task-date">Deadline</label><input id="task-date" type="date"></div>
+        </div>
+        <div class="modal-actions"><button type="button" id="cancel-modal" class="secondary-btn">Cancel</button><button type="submit" class="primary-btn">Save task</button></div>
+      </form>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
